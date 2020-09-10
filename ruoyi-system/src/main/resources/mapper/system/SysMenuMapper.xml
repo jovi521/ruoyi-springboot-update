@@ -144,14 +144,16 @@
         left join sys_user_role ur on rm.role_id = ur.role_id
         LEFT JOIN sys_role ro on ur.role_id = ro.role_id
         <trim prefix="where" prefixOverrides="and |or">
-            <if test="params.userId != null and params.userId != ''">
-                and ur.user_id = #{params.userId}
-            </if>
-            <if test="menuName != null and menuName != ''">
-                AND m.menu_name like concat('%', #{menuName}, '%')
-            </if>
-            <if test="visible != null and visible != ''">
-                AND m.visible = #{visible}
+            <if test="params != null">
+                <if test="params.userId != null and params.userId != ''">
+                    and ur.user_id = #{params.userId}
+                </if>
+                <if test="menuName != null and menuName != ''">
+                    AND m.menu_name like concat('%', #{menuName}, '%')
+                </if>
+                <if test="visible != null and visible != ''">
+                    AND m.visible = #{visible}
+                </if>
             </if>
         </trim>
         order by m.parent_id, m.order_num

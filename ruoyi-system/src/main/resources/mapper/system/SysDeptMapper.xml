@@ -59,7 +59,7 @@
             AND status = #{status}
         </if>
         <!-- 数据范围过滤 -->
-        <if test="params != null and params != ''">
+        <if test="params != null">
             <if test="params.dataScope != null and params.dataScope != ''">
                 ${params.dataScope}
             </if>

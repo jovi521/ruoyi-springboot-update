@@ -37,7 +37,8 @@
                             <div class="hide" th:text="个人中心"></div>
                             <div class="pull-left image">
                                 <img alt="User Image"
-                                     class="img-circle" th:onerror="this.src='img/profile.jpg'" th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
+                                     class="img-circle" th:onerror="this.src='img/profile.jpg'"
+                                     th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
                             </div>
                         </a>
                         <div class="pull-left info">
@@ -77,7 +78,8 @@
                                         <li th:each="fmenu : ${emenu.children}"><a
                                                 th:class="${#strings.isEmpty(fmenu.target)} ? |menuItem| : ${fmenu.target}"
                                                 th:href="@{${fmenu.url}}"
-                                                th:if="${#lists.isEmpty(fmenu.children)}" th:text="${fmenu.menuName}">四级菜单</a></li>
+                                                th:if="${#lists.isEmpty(fmenu.children)}" th:text="${fmenu.menuName}">四级菜单</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -197,16 +199,17 @@
                     </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right welcome-message">
-                    <li><a href="http://doc.ruoyi.vip/ruoyi/document/spjc.html" target="_blank" title="视频教程"><i
-                            class="fa fa-video-camera"></i> 视频教程</a></li>
-                    <li><a href="http://doc.ruoyi.vip" target="_blank" title="开发文档"><i
-                            class="fa fa-question-circle"></i> 开发文档</a></li>
+                    <li><a th:href="@{/index}" title="预留窗口1"><i
+                            class="fa fa-video-camera"></i> 预留窗口1</a></li>
+                    <li><a target="_blank" th:href="@{/index}" title="预留窗口2"><i
+                            class="fa fa-question-circle"></i> 预留窗口2跳转</a></li>
                     <li><a href="javascript:void(0)" id="fullScreen" title="全屏显示"><i class="fa fa-arrows-alt"></i> 全屏显示</a>
                     </li>
                     <li class="dropdown user-menu">
                         <a class="dropdown-toggle" data-hover="dropdown" href="javascript:void(0)">
                             <img class="user-image"
-                                 th:onerror="this.src='img/profile.jpg'" th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
+                                 th:onerror="this.src='img/profile.jpg'"
+                                 th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}">
                             <span class="hidden-xs">[[${#strings.defaultString(user.userName, '-')}]]</span>
                         </a>
                         <ul class="dropdown-menu">
@@ -238,7 +241,7 @@
             </button>
             <nav class="page-tabs menuTabs">
                 <div class="page-tabs-content">
-                    <a class="active menuTab" href="javascript:;" th:data-id="@{/system/main}">首页</a>
+                    <a class="active menuTab" href="javascript:" th:data-id="@{/system/main}">首页</a>
                 </div>
             </nav>
             <button class="roll-nav roll-right tabRight">
@@ -317,10 +320,10 @@
     }
 
     $(function () {
-        if ($.common.equals("history", mode) && window.performance.navigation.type == 1) {
-            var url = storage.get('publicPath');
-            if ($.common.isNotEmpty(url)) {
-                applyPath(url);
+        if ($.common.equals("history", mode) && window.performance.navigation.type === 1) {
+            var urlPub = storage.get('publicPath');
+            if ($.common.isNotEmpty(urlPub)) {
+                applyPath(urlPub);
             }
         } else {
             var hash = location.hash;

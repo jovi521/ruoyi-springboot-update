@@ -20,7 +20,8 @@
                         <li class="select-selectpicker">
                             <label>操作类型： </label><select class="selectpicker"
                                                          data-none-selected-text="请选择"
-                                                         id="businessTypes" multiple th:with="type=${@dict.getType('sys_oper_type')}">
+                                                         id="businessTypes" multiple
+                                                         th:with="type=${@dict.getType('sys_oper_type')}">
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
                         </select>
